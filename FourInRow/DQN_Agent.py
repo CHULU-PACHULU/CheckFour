@@ -6,6 +6,7 @@ import torch.nn as nn
 import numpy as np
 from DQN import DQN
 from State import State
+from Env import Env
 
 # epsilon Greedy
 epsilon_start = 1
@@ -15,6 +16,7 @@ epsiln_decay = 5000
 # batch_size = 64
 gamma = 0.99 
 MSELoss = nn.MSELoss()
+env = Env(State())
 
 class DQN_Agent:
     def __init__(self, player = 1, parametes_path = None, train = True, env= None) -> None:

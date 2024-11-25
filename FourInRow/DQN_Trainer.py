@@ -6,11 +6,11 @@ from ReplayBuffer import ReplayBuffer
 from State import State
 import torch 
 
-epochs = 30000
+epochs = 100000
 C = 500
 batch = 64
 learning_rate = 0.1
-path = "Data\DQN_PARAM_30K.pth"
+path = "Data\DQN_PARAM_100K.pth"
 
 def main ():
     env = Env()

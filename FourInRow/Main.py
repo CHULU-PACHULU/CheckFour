@@ -12,11 +12,11 @@ import numpy as np
 
 pygame.init()
 
-PATH = "Data\DQN_PARAM_30K.pth"
+PATH = "Data\DQN_PARAM_100K.pth"
 clock = pygame.time.Clock()
 graphics = Graphics()
 env = Env(State())
-player1 = DQN_Agent(1,env= env, parametes_path=PATH,train=False)
+player1 = DQN_Agent(1,PATH,train=False,env=env)
 player2 = Human_Agent(2,env)
 
 
@@ -51,18 +51,24 @@ while run:
         env.move(action)
         player = switch_players(player)
     graphics.draw(env.state)
+    pygame.time.delay(200)
     if env.state.end_of_game != 0:
-        for event in events:
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                pos = event.pos
-                x,y = pos
-                if y<765 and y>745 and x<500 and x>300:
-                    env = Env(State())
-                    player1 = DQN_Agent(1,env= env, parametes_path=PATH,train=False)
-                    player2 = Human_Agent(2,env)
-                    player = player1
-                    color="red"
-                    env.state.end_of_game = 0
+        while env.state.end_of_game != 0:
+            pygame.display.update()
+            graphics.draw(env.state)
+            clock.tick(FPS)
+            events = pygame.event.get()
+            for event in events:
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    pos = event.pos
+                    x,y = pos
+                    if y<765 and y>745 and x<500 and x>300:
+                        env = Env(State())
+                        player1 = DQN_Agent(1,PATH,train=False,env=env)
+                        player2 = Human_Agent(2,env)
+                        player = player1
+                        color="red"
+                        env.state.end_of_game = 0
 
                     
                 

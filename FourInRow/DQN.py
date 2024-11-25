@@ -6,7 +6,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 # Parameters
-input_size = 43 # state: board = 6*7 + action 1 * 2
+input_size = 43 # state: board = 6*7 + action 1
 layer1 = 128
 layer2 = 64
 output_size = 1 # Q(s,a)
